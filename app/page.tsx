@@ -27,7 +27,7 @@ export default async function Home() {
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.docs}
+          href={siteConfig.links.github}
           target="_blank"
           rel="noreferrer"
           className={buttonVariants()}
