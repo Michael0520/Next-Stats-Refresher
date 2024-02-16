@@ -21,25 +21,31 @@ const cookieOptions: CookieOptions = cookieOptionsSchema.parse({
   secure: true,
 });
 
-export async function getStats() {
-  let statsCookie = cookies().get("stats");
-  if (!statsCookie) {
-    return stats;
-  }
-  return JSON.parse(statsCookie.value);
+export async function getStats(): Promise<Stats> {
+  const statsCookie = cookies().get("stats");
+  return statsCookie ? JSON.parse(statsCookie.value) : stats
 }
 
-async function refreshStat(statKey: keyof Stats) {
-  let currentStats = await getStats();
-  // 每次刷新隨機增加 1 到 100 之間的數字
+async function refreshStat(statKey: keyof Stats): Promise<void> {
+  const currentStats = await getStats();
   currentStats[statKey] += getRandomInt(1, 100);
   cookies().set("stats", JSON.stringify(currentStats), cookieOptions);
 }
 
-function getRandomInt(min: number, max: number) {
+function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export const refreshVisitors = () => refreshStat('visitors');
 export const refreshCustomers = () => refreshStat('customers');
 export const refreshOrders = () => refreshStat('orders');
+export const refreshAll = async (): Promise<void> => {
+  const statKeys: (keyof Stats)[] = ['visitors', 'customers', 'orders'];
+  const currentStats = await getStats();
+
+  statKeys.forEach(key => {
+    currentStats[key] += getRandomInt(1, 100);
+  });
+
+  cookies().set("stats", JSON.stringify(currentStats), cookieOptions);
+};
