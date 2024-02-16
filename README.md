@@ -1,12 +1,6 @@
-# next-template
+# Next-Stats-Refresher
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
-
-## Usage
-
-```bash
-npx create-next-app -e https://github.com/shadcn/next-template
-```
+Explore dynamic 3D visualizations of website analytics with Next.js. Hover over interactive cards to experience a captivating 3D effect, and refresh visitor, customer, and order stats with a single click.
 
 ## Features
 
@@ -16,7 +10,3 @@ npx create-next-app -e https://github.com/shadcn/next-template
 - Icons from [Lucide](https://lucide.dev)
 - Dark mode with `next-themes`
 - Tailwind CSS class sorting, merging and linting.
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
