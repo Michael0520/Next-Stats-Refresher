@@ -10,3 +10,5 @@ Explore dynamic 3D visualizations of website analytics with Next.js. Hover over 
 - Icons from [Lucide](https://lucide.dev)
 - Dark mode with `next-themes`
 - Tailwind CSS class sorting, merging and linting.
+- Framer Motion for animations
+- zod for runtime type checking
