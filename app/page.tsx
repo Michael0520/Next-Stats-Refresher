@@ -1,9 +1,19 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Counter } from "@/components/counter"
+import {
+  getStats,
+  refreshCustomers,
+  refreshOrders,
+  refreshVisitors,
+} from "@/lib/stats";
 
-export default function IndexPage() {
+export default async function IndexPage() {
+
+  const { visitors, customers, orders } = await getStats();
+
   return (
     <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -33,6 +43,13 @@ export default function IndexPage() {
         >
           GitHub
         </Link>
+      </div>
+
+      <div>
+        <Counter value={orders} />
+        <form action={refreshOrders}>
+            <Button>Refresh</Button>
+          </form>
       </div>
     </section>
   )
